@@ -1,0 +1,285 @@
+
+// Responsive
+
+@mixin flex-all($direction: null, $justify: null, $align: null, $wrap: null, $inline: null) {
+	@if $inline == true {
+		display: inline-flex;
+	} @else {
+		display: flex;
+	}
+	
+	@if $direction != null {
+		flex-direction: $direction;
+	}
+	@if $justify != null {
+		justify-content: $justify;
+	}
+	@if $align != null {
+		align-items: $align;
+	}
+	@if $wrap != null {
+		flex-wrap: $wrap;
+	}
+}
+
+$vp-small				: 320px;	// small size 
+$vp-mid					: 768px;	// mid size
+$vp-large				: 1024px;	// large size
+
+$vp-max					: 1350px;	// max viewport
+
+$site-width				: $vp-max;
+
+// Header & Footer Sizes
+$header-height          : 75px;
+$footer-height          : 110px;
+
+// Logos Sizes
+
+$header-logo-width		: 100px;
+$header-logo-height		: 23px;
+$footer-logo-width		: 180px;
+$footer-logo-height		: 25px;
+
+// Colors
+
+$c-white                : rgb(255,255,255);
+$c-black                : rgb(0,0,0);
+$c-grey                 : rgb(104, 104, 104);
+$c-grey-light           : rgb(248, 248, 248);
+$c-yellow               : rgb(255, 198, 0);
+$c-text                 : rgb(48, 48, 48);
+
+$primary-color			: rgb(255, 108, 43);
+$color-over-primary		: $c-white;
+
+$secondary-color		: rgb(85, 87, 89);
+$color-over-secondary	: $c-white;
+
+// Social Colors
+
+$facebook				: rgb(24,119,242);
+$twitter				: rgb(29,161,242);
+$youtube				: rgb(255,0,0);
+$instagram				: rgb(215,53,118);
+
+// Logos Images
+
+$header-logo-image-white: "./images/silice-header-logo-white.png";
+$footer-logo-image-white: "./images/silice-slogan-white.png";
+
+$header-logo-image-dark : "./images/silice-header-logo-orange.png";
+$footer-logo-image-dark : "./images/silice-slogan-dark.png";
+
+
+// Fonts
+
+$primary-font			 : Helvetica-roman, sans-serif;
+$primary-font-light      : Helvetica-light, sans-serif;
+$primary-font-ultra-light: Helvetica-ultra-light, sans-serif;
+$primary-font-bold		 : Helvetica-bold, sans-serif;
+$primary-font-black		 : Helvetica-black, sans-serif;
+$secondary-font          : Arial Black, Arial, Helvetica, sans-serif;
+
+$base-font-size			 : 16px;
+
+$size-huge               : 3rem; // 48px
+$size-large              : 2.375rem; // 38px
+$size-bigger             : 2rem; // 32px
+$size-big                : 1.625rem; // 26px
+$size-medium             : 1.25rem; // 20px
+$size-base               : 1rem; // 16px
+$size-small              : 0.75rem; // 12px
+$size-tiny               : 0.625rem; // 10px
+$size-wee                : 0.5rem; // 8px
+
+body {
+    margin: 0
+}
+
+.dot-circle-wrapper {
+    width: '100vw';
+    height: '100vh';
+    overflow: hidden;
+}
+
+.content {
+  &-play {
+      position: absolute;
+      // top: 400px;
+      top: 50%;
+      left: 50%;
+      z-index: 3;
+      transform: translate(-50%, -50%);
+      // transform: translateX(-50%);
+
+      .circle-rotator {
+        //   @include bg-cover;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 628px;
+          height: 628px;
+          background: {
+              image: url(./images/svgs/dots-white.svg);
+              repeat: no-repeat;
+              position: center;
+              size: calc(100% - 4px) calc(100% - 4px);
+          }
+          transform: translate(-50%, -50%);
+
+          svg {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              
+              circle {
+                  width: calc(100% - 4px);
+                  height: calc(100% - 4px);
+                  fill: none;
+                  stroke: $primary-color;
+                  stroke-width: 4;
+                  stroke-linecap: 4;
+                  stroke-dasharray: 0;
+                  stroke-dashoffset: 0;
+              }
+          }
+      }
+
+      .mask {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          border-radius: 50%;
+          box-shadow: 0 3px 37px rgba($c-black, .16);
+          transform: translate(-50%, -50%);
+
+          &-1 {
+              width: 433px;
+              height: 433px;
+              background-color: rgba($c-white, .18);
+          }
+
+          &-2 {
+              width: 380px;
+              height: 380px;
+              background-color: rgba($c-white, .34);
+          }
+
+          &-3 {
+              width: 184px;
+              height: 184px;
+              background-color: rgba($c-white, .44);
+          }
+      }
+
+      .content-links {
+          @include flex-all($justify: center, $align: center);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 75px;
+          height: 75px;
+          border-radius: 50%;
+          box-shadow: 0 3px 6px rgba($c-black, .3);
+          background-color: rgba($c-white, .5);
+          transform: translate(-50%, -50%);
+      }
+  }
+
+  &-image {
+      height: 100vh;
+
+      .swiper-wrapper, .swiper-container, .swiper-slide { 
+          height: 100%; 
+      }
+
+      .swiper-container { position: initial; }
+      
+      .swiper-pagination-bullet-active,
+      .swiper-pagination-bullet {
+          width: 26px;
+          height: 26px;
+          opacity: 1;
+          background-color: $primary-color;
+      }
+
+      .swiper-pagination {
+          @include flex-all($justify: center, $align: center);
+          position: absolute;
+          z-index: 5;
+          top: 86px;
+          bottom: auto;
+          left: 50%;
+          width: 628px;
+          height: 628px;
+          transform: translateX(-50%);
+      }
+
+      img {
+          display: block;
+          max-width: 100%;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: .5;
+      }
+  }
+
+  &-text {          
+      position: absolute;
+      z-index: 2;
+      bottom: 130px;
+      left: 75px;
+
+      &:after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 160px;
+          height: 1px;
+          background-color: $primary-color;
+      }
+
+      .name { 
+          @include flex-all($align: center);
+          margin: 0;
+          font: {
+              family: $secondary-font;
+              weight: 900;
+          }
+          color: $c-white; 
+
+          svg { margin-right: 8px; }
+      }
+
+      .text { 
+          font-family: $primary-font-ultra-light; 
+          letter-spacing: 2.46px;
+          color: rgba($c-white, .84);
+      }
+  }
+}
+
+.hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+.action {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+  }
